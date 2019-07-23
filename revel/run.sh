@@ -1,2 +1,4 @@
 #!/bin/sh
-revel run -a github.com/dtmkeng/framework-exmaple/revel
+
+SCRIPTPATH=$(cd "$(dirname "$0")"; pwd)
+"$SCRIPTPATH/revel" -importPath github.com/dtmkeng/framework-exmaple/revel -srcPath "$SCRIPTPATH/src" -runMode dev
