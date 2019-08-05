@@ -7,6 +7,7 @@ import (
 func main() {
 	app := aero.New()
 	configure(app).Run()
+	// app.ListenAndServe(":8080",app)
 }
 
 func configure(app *aero.Application) *aero.Application {

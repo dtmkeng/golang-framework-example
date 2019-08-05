@@ -1,14 +1,19 @@
 package main
 
 import (
-	"fmt"
+	"strconv"
+
 	"github.com/aofei/air"
 )
 
+var port = 8081
+
+func airHandler(req *air.Request, res *air.Response) error {
+	return res.WriteString("Hello, 世界")
+}
 func main() {
-	air.Default.GET("/", func(req *air.Request, res *air.Response) error {
-		return res.WriteString("Hello, 世界")
-	})
-	fmt.Println("Server start at 8080")
-	air.Default.Serve()
+	a := air.New()
+	a.Address = ":" + strconv.Itoa(port)
+	a.GET("/", airHandler)
+	a.Serve()
 }
