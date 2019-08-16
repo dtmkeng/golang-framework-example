@@ -30,6 +30,9 @@ func main() {
 	app.Use(contenttype.Set("application/json"))
 
 	app.GET("/", HomeHandler)
+	// app.GET("/hello", func(c buffalo.Context) error {
+	// 	return c.Render(200, r.String(c.Params())
+	// })
 	// app.Options.Addr := 8080
 	app.Serve()
 
