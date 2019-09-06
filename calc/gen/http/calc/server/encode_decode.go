@@ -34,10 +34,10 @@ func DecodeAddRequest(mux goahttp.Muxer, decoder func(*http.Request) goahttp.Dec
 	return func(r *http.Request) (interface{}, error) {
 		var (
 			a   int
-			b   int
+		
+			params = mux.Vars(r)	b   int
 			err error
 
-			params = mux.Vars(r)
 		)
 		{
 			aRaw := params["a"]

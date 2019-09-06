@@ -22,8 +22,8 @@ func main() {
 		domainF   = flag.String("domain", "", "Host domain name (overrides host domain specified in service design)")
 		httpPortF = flag.String("http-port", "", "HTTP port (overrides host HTTP port specified in service design)")
 		// grpcPortF = flag.String("grpc-port", "", "gRPC port (overrides host gRPC port specified in service design)")
-		secureF   = flag.Bool("secure", false, "Use secure scheme (https or grpcs)")
-		dbgF      = flag.Bool("debug", false, "Log request and response bodies")
+		secureF = flag.Bool("secure", false, "Use secure scheme (https or grpcs)")
+		dbgF    = flag.Bool("debug", false, "Log request and response bodies")
 	)
 	flag.Parse()
 
