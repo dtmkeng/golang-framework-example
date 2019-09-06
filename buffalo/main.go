@@ -13,7 +13,7 @@ import (
 var r *render.Engine
 
 // ENV ...
-var ENV = envy.Get("GO_ENV", "development")
+var ENV = envy.Get("GO_ENV", "production")
 
 func main() {
 
@@ -30,6 +30,7 @@ func main() {
 	app.Use(contenttype.Set("application/json"))
 
 	app.GET("/", HomeHandler)
+	// app.Env = "production"
 	// app.GET("/hello", func(c buffalo.Context) error {
 	// 	return c.Render(200, r.String(c.Params())
 	// })
