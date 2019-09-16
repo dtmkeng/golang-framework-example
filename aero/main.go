@@ -11,10 +11,10 @@ func main() {
 }
 
 func configure(app *aero.Application) *aero.Application {
-	app.Get("/", func(ctx aero.Context) error {
+	app.Post("/test", func(ctx aero.Context) error {
 		return ctx.String("Hello World")
 	})
-	app.Get("/help", func(ctx aero.Context) error {
+	app.Post("/help", func(ctx aero.Context) error {
 		return ctx.String("hello")
 	})
 	return app

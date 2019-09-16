@@ -5,7 +5,6 @@ import (
 	"github.com/gobuffalo/buffalo/render"
 	"github.com/gobuffalo/envy"
 	contenttype "github.com/gobuffalo/mw-contenttype"
-	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/gobuffalo/x/sessions"
 	"github.com/rs/cors"
 )
@@ -26,7 +25,7 @@ func main() {
 		SessionName: "_coke_session",
 		Addr:        ":8080",
 	})
-	app.Use(paramlogger.ParameterLogger)
+	app.Use(buffalo.RequestLoggerFunc)
 	app.Use(contenttype.Set("application/json"))
 
 	app.GET("/", HomeHandler)

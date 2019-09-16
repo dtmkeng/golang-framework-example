@@ -11,6 +11,7 @@ import (
 func main() {
 	api := rest.NewApi()
 	api.Use(rest.DefaultDevStack...)
+	api.Use(&rest.AccessLogApacheMiddleware{})
 	router, err := rest.MakeRouter(
 		rest.Get("/", goRestHandler),
 	)
