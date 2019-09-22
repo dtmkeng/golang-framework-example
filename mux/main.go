@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -14,10 +15,25 @@ type student struct {
 	Age  int
 }
 
+func loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+		next.ServeHTTP(w, r)
+		responseTime := time.Since(start)
+
+		// Write it to the log
+		fmt.Println(responseTime)
+
+		// Make sure to pass the error back!
+		// return err
+		// next.ServeHTTP(w, r)
+	})
+}
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
 	r.HandleFunc("/list", showList)
+	r.Use(loggingMiddleware)
 	fmt.Println("server start at 8000 ...")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
