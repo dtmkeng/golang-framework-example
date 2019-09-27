@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
@@ -31,11 +30,10 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/", home)
-	r.HandleFunc("/list", showList)
+	r.HandleFunc("/", home).Methods("GET")
+	// r.HandleFunc("/list", showList)
 	r.Use(loggingMiddleware)
-	fmt.Println("server start at 8000 ...")
-	log.Fatal(http.ListenAndServe(":8000", r))
+
 }
 func home(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World")
