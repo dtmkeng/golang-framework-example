@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -14,15 +13,18 @@ var port = 8080
 func main() {
 
 	app := beego.NewControllerRegister()
-	app.Get("/", func(ctx *bc.Context) {
-		ctx.WriteString("Hello World")
-	})
 	app.Get("/hello", func(ctx *bc.Context) {
-		ctx.WriteString(ctx.Input.Query("name"))
+		ctx.WriteString("test")
 	})
 	// beego.Router("/", &controllers.UserController{})
 	// beego.Run()
-	fmt.Println("server start at..", strconv.Itoa(port))
+
+	// s := &http.Server{
+	// 	Addr:    ":8080",
+	// 	Handler: app,
+	// }
+	// fmt.Println("server start at..", strconv.Itoa(port))
 	http.ListenAndServe(":"+strconv.Itoa(port), app)
+	// s.ListenAndServe()
 
 }
