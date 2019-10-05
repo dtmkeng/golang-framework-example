@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"time"
 
@@ -15,15 +14,10 @@ func airHandler(req *air.Request, res *air.Response) error {
 }
 func midgase(next air.Handler) air.Handler {
 	return func(req *air.Request, res *air.Response) error {
-		start := time.Now()
-		err := next(req, res)
-		responseTime := time.Since(start)
-
-		// Write it to the log
-		fmt.Println(responseTime)
-
-		// Make sure to pass the error back!
-		return err
+		time.Sleep(time.Millisecond * 200)
+		next(req, res)
+		time.Sleep(time.Millisecond * 200)
+		return nil
 	}
 }
 func main() {
